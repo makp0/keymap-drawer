@@ -76,16 +76,12 @@ jobs:
       drawings: ${{ steps.artifact-upload-step.outputs.artifact-id }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          # So the reference to the parent commit is available when amending
-          # See:
-          # - https://github.com/stefanzweifel/git-auto-commit-action#using---amend-and---no-edit-as-commit-options
-          # - https://github.com/stefanzweifel/git-auto-commit-action/issues/159#issuecomment-845347950
-          # - https://github.com/actions/checkout
+          ref: ${{ github.ref }}
           fetch-depth: 0
           submodules: recursive
-
+      - run: git pull --ff-only
       - name: Install keymap-drawer (pypi)
         if: inputs.install_branch == ''
         run: |
