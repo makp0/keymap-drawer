@@ -83,7 +83,7 @@ jobs:
           # - https://github.com/stefanzweifel/git-auto-commit-action#using---amend-and---no-edit-as-commit-options
           # - https://github.com/stefanzweifel/git-auto-commit-action/issues/159#issuecomment-845347950
           # - https://github.com/actions/checkout
-          fetch-depth: ${{ (inputs.amend_commit == true && 2) || 1 }}
+          fetch-depth: 0
           submodules: recursive
 
       - name: Install keymap-drawer (pypi)
